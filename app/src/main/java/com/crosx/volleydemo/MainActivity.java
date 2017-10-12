@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.crosx.volleydemo.common.Constant.WEATHER_TAG;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button mButton;
@@ -41,14 +43,16 @@ public class MainActivity extends AppCompatActivity {
                     public void handleMessage(Message msg) {
                         super.handleMessage(msg);
                         switch (msg.what) {
-                            case 8:
+                            case WEATHER_TAG:
                                 Log.i("result", msg.obj.toString());
                                 mContent.setText(msg.obj.toString());
                                 break;
                         }
                     }
-                }, 8);
+                }, WEATHER_TAG);
             }
         });
+
     }
+
 }
