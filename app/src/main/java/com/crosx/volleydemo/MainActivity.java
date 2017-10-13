@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mContent;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContent.setText("");
-                Map<String, String> map = new HashMap();
-                map.put("citykey", "101010100");
-                //map.put("xxx","xxx");
-                //...
-                NetworkUtil.getInstance().get(MainActivity.this, "http://wthrcdn.etouch.cn/weather_mini", map, new Handler() {
+                NetworkUtil.getInstance().get(MainActivity.this, "http://wthrcdn.etouch.cn/weather_mini?citykey=101010100", null, new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
                         super.handleMessage(msg);

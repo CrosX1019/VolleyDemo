@@ -50,6 +50,14 @@ public class NetworkUtil {
     //获取请求队列
     private RequestQueue mRequestQueue = VolleyApplication.sRequestQueue;
 
+
+    /**
+     * @param activity 当前Activity Context
+     * @param url      请求地址
+     * @param map      请求参数
+     * @param handler  返回结果处理
+     * @param tag      请求标识
+     */
     public void post(final Activity activity, String url, final Map<String, String> map, final Handler handler, final int tag) {
         final SweetAlertDialog dialog = new SweetAlertDialog(activity);
         dialog.getProgressHelper().setBarColor(Color.parseColor("#66CCFF"));
@@ -74,9 +82,9 @@ public class NetworkUtil {
                         message.obj = baseBean.getData();
                         handler.sendMessage(message);
                         break;
-//                    case xxxx:
-//                        //处理其他逻辑,例如签名错误、token失效、toast错误信息等
-//                        break;
+                    //case xxxx:
+                    //处理其他逻辑,例如签名错误、token失效、toast错误信息等
+                    //break;
                 }
             }
         }, new Response.ErrorListener() {
@@ -89,11 +97,11 @@ public class NetworkUtil {
             }
         }) {
 
-//            //如有公参请求头之类的在这里设置就好
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                return super.getHeaders();
-//            }
+            //如有公参请求头之类的在这里设置就好
+            //@Override
+            //public Map<String, String> getHeaders() throws AuthFailureError {
+            //return super.getHeaders();
+            //}
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -103,7 +111,7 @@ public class NetworkUtil {
         request.setRetryPolicy(new DefaultRetryPolicy(
                 5 * 1000,//链接超时时间
                 0,//重新尝试连接次数
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT//曲线增长因子
         ));
         mRequestQueue.add(request);
     }
